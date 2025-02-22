@@ -1,7 +1,8 @@
 //Pages
-@use './component/index.scss';
+@use './component/home';
 
 //Globals
 @use './globals/global';
 @use './globals/variables';
 @use './globals/fonts';
+@use './globals/mixins';

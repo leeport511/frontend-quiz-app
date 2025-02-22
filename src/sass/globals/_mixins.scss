@@ -1,0 +1,22 @@
+@use './fonts' as *;
+@use './variables' as *;
+
+@mixin left-right-padding {
+	padding-left: 24px;
+	padding-right: 24px;
+}
+
+@mixin btn-selector {
+	width: 100%;
+	background-color: $white;
+	padding: 12px;
+	gap: 16px;
+}
+
+@mixin little-paragraph {
+	font-family: $rubik-italic;
+	color: $gray-navy;
+	font-size: 14px;
+	line-height: 150%;
+	font-weight: 400;
+}

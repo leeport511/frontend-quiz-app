@@ -6,8 +6,36 @@
   font-family: "Rubik";
   src: url("/public/fonts/Rubik-VariableFont_wght.ttf");
 }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
+  position: relative;
   font-family: "Rubik";
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f4f6fa;
+}
+
+.main__container {
+  padding-left: 24px;
+  padding-right: 24px;
+  width: 375px;
+  height: 100vh;
+  background-image: url("/src/assets/images/pattern-background-mobile-light.svg");
+  background-repeat: no-repeat;
+}
+.main__container .header__container {
+  padding: 16px 0;
+  height: 72px;
+  display: flex;
+  justify-content: space-between;
 }
 
 /*# sourceMappingURL=styles.css.map */

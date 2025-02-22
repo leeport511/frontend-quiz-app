@@ -1,5 +1,45 @@
 @use './fonts' as *;
+@use './variables' as *;
+@use './mixins' as *;
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
 
 body {
+	position: relative;
 	font-family: $rubik;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: $light-gray;
+}
+
+.main__container {
+	@include left-right-padding;
+	width: 375px;
+	height: 100vh;
+	background-image: url('/src/assets/images/pattern-background-mobile-light.svg');
+	background-repeat: no-repeat;
+
+	.header__container {
+		padding: 16px 0;
+		height: 72px;
+		display: flex;
+		justify-content: space-between;
+	}
+}
+
+//tablet
+
+@media screen and (min-width: 768px) {
+}
+
+//desktop pc
+
+@media screen and (min-width: 1280px) {
 }
