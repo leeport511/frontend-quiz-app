@@ -16,22 +16,37 @@
 		<script type="module" src="/src/main.js" defer></script>
 	</head>
 	<body>
-		<main class="main__container">
-			<header class="header__container">
-				<div class="header__quiz-title"></div>
-				<img
-					src="/src/assets/images/icon-sun-dark.svg"
-					alt="sun-light"
-				/>
-				<button class="header__btn--day-night">
-					<div>BOTON</div>
-				</button>
-				<img
-					src="/src/assets/images/icon-moon-dark.svg"
-					alt="moon-light"
-				/>
+		<main class="main">
+			<header class="header">
+				<div class="header__quiz-title">
+					<!-- esto se va a crear dinamicamente -->
+					<div class="header__quiz-title--img-cont">
+						<img
+							src="/src/assets/images/icon-accessibility.svg"
+							alt="icon"
+						/>
+					</div>
+					<h4 class="header__quiz-title--text">
+						accessibilty
+					</h4>
+				</div>
+				<div class="header__btn--cont">
+					<img
+						src="/src/assets/images/icon-sun-dark.svg"
+						alt="sun-light"
+					/>
+					<button>
+						<div class="btn__white-dot"></div>
+					</button>
+					<img
+						src="/src/assets/images/icon-moon-dark.svg"
+						alt="moon-light"
+					/>
+				</div>
 			</header>
-			<div id="app"></div>
+			<section class="main__section">
+				<div id="app"></div>
+			</section>
 		</main>
 	</body>
 </html>
