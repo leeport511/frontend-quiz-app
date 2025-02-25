@@ -10,10 +10,12 @@ const subjectSelector = async () => {
 	quizzes.forEach((quiz) => {
 		console.log(quiz.icon);
 
-		const subjectTitle = document.createElement('button');
 		const subjectImage = document.createElement('img');
 		subjectImage.setAttribute('src', `${quiz.icon}`);
 		subjectImage.setAttribute('alt', `${quiz.title} icon`);
+		subjectImage.classList.add('quiz__subject-selector--img');
+		subjectImage.style.backgroundColor = `${quiz.iconColor}`;
+		const subjectTitle = document.createElement('button');
 		subjectTitle.classList.add('quiz__subject-selector--btn');
 		subjectTitle.textContent = quiz.title;
 		subjectTitle.appendChild(subjectImage);

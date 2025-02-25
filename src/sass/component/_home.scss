@@ -3,3 +3,44 @@
 @use '../globals/mixins' as *;
 
 // Todo: empezar con el home en el diseno.
+
+.quiz {
+	margin-top: 32px;
+
+	&__title {
+		margin-bottom: 40px;
+
+		h1 {
+			font-size: 40px;
+			font-weight: 300;
+			line-height: 120%;
+
+			b {
+				font-weight: 600;
+			}
+		}
+
+		p {
+			@include little-paragraph;
+			margin-top: 16px;
+		}
+	}
+
+	&__subject-selector {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+
+		&--btn {
+			@include btn-selector;
+			display: flex;
+			flex-direction: row-reverse;
+			align-items: center;
+			justify-content: flex-end;
+		}
+
+		&--img {
+			@include img-border;
+		}
+	}
+}
