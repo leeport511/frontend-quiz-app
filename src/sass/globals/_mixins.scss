@@ -15,8 +15,9 @@
 	border: none;
 	border-radius: 12px;
 	font-size: 18px;
-	font-weight: 500;
+	font-weight: 400;
 	font-family: $rubik;
+	cursor: pointer;
 }
 
 @mixin img-border {
@@ -31,5 +32,5 @@
 	color: $gray-navy;
 	font-size: 14px;
 	line-height: 150%;
-	font-weight: 400;
+	font-weight: 300;
 }
