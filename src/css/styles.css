@@ -96,7 +96,6 @@ body .main .header__quiz-title {
   align-items: center;
 }
 body .main .header__quiz-title--img-cont {
-  background-color: #f6e7ff;
   width: 40px;
   height: 40px;
   display: grid;

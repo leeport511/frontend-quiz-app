@@ -29,7 +29,7 @@ const subjectSelector = async () => {
 
 		subjectsContainer.appendChild(fragment);
 
-		startQuiz(subjectTitle.id);
+		startQuiz(subjectTitle.id, icon, iconColor);
 	});
 };
 

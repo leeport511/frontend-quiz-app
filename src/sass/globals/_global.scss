@@ -35,12 +35,12 @@ body {
 			justify-content: space-between;
 
 			&__quiz-title {
-				visibility: hidden; //* esto cambia en el dark and white
+				visibility: hidden; //* esto cambia en el inicio de la pregunta
 				display: flex;
 				align-items: center;
 
 				&--img-cont {
-					background-color: #f6e7ff;
+					// background-color: #f6e7ff;
 					width: 40px;
 					height: 40px;
 					display: grid;
