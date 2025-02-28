@@ -43,16 +43,46 @@ const getQuestions = async (topic) => {
 	return quiz ? quiz.questions : [];
 };
 
-//* las preguntas es un array, se tiene que recorrerlo.
-const renderQuestions = (questions, index) => {
-	if (index >= questions.length) {
+const renderQuestions = async (questions, index) => {
+	const questionIndex = await questions;
+	if (index >= questionIndex.length) {
 		renderResult();
 		return;
 	}
 
+	const { answer, options, question } = questionIndex[index];
+
 	const app = document.getElementById('app');
 
-	app.innerHTML = ` aca va la pagina de la primer pregunta`;
+	app.innerHTML = `
+		<section class="question">
+			<div class="question__container">
+				<p class="question__container-number">Question ${index + 1} of ${
+		questionIndex.length
+	}</p>
+				<p class="question__container-text"> ${question} </p>
+			</div>
+			<div class="question__options">
+			</div>
+			<button class="question__btn-submit">Submit Answer</button>
+			<button class="question__btn-next">Next Question</button>
+		</section>
+	`;
+
+	const optionSelector = document.querySelector(
+		'.question__options'
+	);
+
+	options.forEach((opt) => {
+		console.log(opt);
+
+		let optionParagraph = document.createElement('P');
+		optionParagraph.textContent = opt;
+
+		console.log(optionParagraph);
+
+		optionSelector.appendChild(optionParagraph);
+	});
 };
 
 const renderResult = () => {};
