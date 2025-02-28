@@ -74,12 +74,8 @@ const renderQuestions = async (questions, index) => {
 	);
 
 	options.forEach((opt) => {
-		console.log(opt);
-
 		let optionParagraph = document.createElement('P');
 		optionParagraph.textContent = opt;
-
-		console.log(optionParagraph);
 
 		optionSelector.appendChild(optionParagraph);
 	});
