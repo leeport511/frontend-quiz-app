@@ -208,6 +208,20 @@ body .main .header__btn--cont img {
   text-align: center;
   font-size: 18px;
 }
+.question__options--container .green-letter {
+  background-color: #26d782;
+  color: #ffffff;
+}
+.question__options--container .red-letter {
+  background-color: #ee5454;
+  color: #ffffff;
+}
+.question__options .green-border {
+  outline: 3px solid #26d782;
+}
+.question__options .red-border {
+  outline: 3px solid #ee5454;
+}
 .question__btn-submit {
   width: 100%;
   height: 56px;

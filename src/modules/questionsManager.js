@@ -46,7 +46,7 @@ const getQuestions = async (topic) => {
 const renderQuestions = async (questions, index) => {
 	const questionIndex = await questions;
 	if (index >= questionIndex.length) {
-		renderResult();
+		renderFinalResult();
 		return;
 	}
 
@@ -76,10 +76,15 @@ const renderQuestions = async (questions, index) => {
 		'.question__options'
 	);
 
-	options.forEach((opt) => {
-		const optionContainer = document.createElement('DIV');
-		const optionLetter = document.createElement('SPAN');
-		const optionParagraph = document.createElement('P');
+	let optionContainer;
+	let optionLetter;
+	let optionParagraph;
+	let selectedAnswer;
+
+	options.forEach((opt, index) => {
+		optionContainer = document.createElement('DIV');
+		optionLetter = document.createElement('SPAN');
+		optionParagraph = document.createElement('P');
 
 		optionContainer.className = 'question__options--container';
 		optionContainer.tabIndex = '0';
@@ -88,25 +93,71 @@ const renderQuestions = async (questions, index) => {
 		optionParagraph.className =
 			'question_options--container-text';
 
-		optionLetter.textContent =
-			(options[0] === opt && 'A') ||
-			(options[1] === opt && 'B') ||
-			(options[2] === opt && 'C') ||
-			(options[3] === opt && 'D');
+		optionLetter.textContent = ['A', 'B', 'C', 'D'][index];
 
 		optionParagraph.textContent = opt;
 
+		optionContainer.addEventListener('click', (e) => {
+			document
+				.querySelectorAll('.question__options--container')
+				.forEach((el) => el.removeAttribute('isSelected'));
+
+			e.currentTarget.setAttribute('isSelected', 'true');
+
+			selectedAnswer = e.currentTarget.children[1].textContent;
+		});
+
 		optionContainer.appendChild(optionLetter);
 		optionContainer.appendChild(optionParagraph);
-
 		optionSelector.appendChild(optionContainer);
 	});
+
+	const submitButton = document.querySelector(
+		'.question__btn-submit'
+	);
+
+	submitButton.addEventListener('click', () =>
+		submitAnswer(answer, selectedAnswer)
+	);
 };
 
-//todo: agregar funcionalidad de next question y agregar funcionalidad en el submit answer si esta bien o mal la respuesta.
-
-const renderResult = () => {};
+//todo: terminar estilos de correcto e incorrecto
 
 const nextQuestion = (nextIndex) => {};
 
+const submitAnswer = (answer, selectedAnswer) => {
+	if (!selectedAnswer) {
+		alert('please Select an answer');
+		return;
+	}
+
+	console.log(answer);
+	console.log(selectedAnswer);
+
+	const selectedOption = document.querySelector(
+		'.question__options--container[isSelected]'
+	);
+	const selectedLetterOption = selectedOption.querySelector(
+		'.question__options--container-letter'
+	);
+	const submitButton = document.querySelector(
+		'.question__btn-submit'
+	);
+
+	const nextButton = document.querySelector('.question__btn-next');
+
+	if (answer === selectedAnswer) {
+		selectedOption.classList.add('green-border');
+		selectedLetterOption.classList.add('green-letter');
+		submitButton.style.display = 'none';
+	} else {
+		selectedOption.classList.add('red-border');
+		selectedLetterOption.classList.add('red-letter');
+		submitButton.style.display = 'none';
+	}
+
+	nextButton.style.display = 'inline';
+};
+
+const renderFinalResult = () => {};
 export { startQuiz, renderQuestions };
