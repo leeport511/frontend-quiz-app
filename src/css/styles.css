@@ -35,6 +35,7 @@
 }
 .quiz__subject-selector--btn {
   width: 100%;
+  height: 64px;
   background-color: #ffffff;
   padding: 12px;
   gap: 16px;
@@ -135,6 +136,110 @@ body .main .header__btn--cont button .btn__white-dot {
 }
 body .main .header__btn--cont img {
   width: 16px;
+}
+.question {
+  margin-top: 32px;
+}
+.question__container {
+  margin-bottom: 24px;
+}
+.question__container-progression {
+  font-family: "Rubik Italic";
+  color: #626c7f;
+  font-size: 14px;
+  line-height: 150%;
+  font-weight: 300;
+  margin-bottom: 12px;
+}
+.question__container-text {
+  line-height: 120%;
+  font-weight: 500;
+  font-size: 20px;
+}
+.question__progress-bar {
+  height: 16px;
+  width: 100%;
+  background-color: #ffffff;
+  padding: 4px;
+  border-radius: 9999px;
+  margin-bottom: 40px;
+}
+.question__progress-bar--line {
+  background-color: #a729f5;
+  width: 50%;
+  height: 8px;
+  border-radius: 9999px;
+}
+.question__options--container {
+  width: 100%;
+  height: 64px;
+  background-color: #ffffff;
+  padding: 12px;
+  gap: 16px;
+  margin-bottom: 12px;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 400;
+  font-family: "Rubik";
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.question__options--container:hover .question__options--container-letter {
+  color: #a729f5;
+  background-color: #f6e7ff;
+}
+.question__options--container:focus {
+  outline: 3px solid #a729f5;
+}
+.question__options--container:focus .question__options--container-letter {
+  color: #ffffff;
+  background-color: #a729f5;
+}
+.question__options--container-letter {
+  border-radius: 6px;
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+  background-color: #f4f6fa;
+  line-height: 30px;
+  text-align: center;
+  font-size: 18px;
+}
+.question__btn-submit {
+  width: 100%;
+  height: 56px;
+  text-align: center;
+  background-color: #a729f5;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-family: "Rubik";
+  font-weight: 500;
+  font-size: 18px;
+  cursor: pointer;
+}
+.question__btn-submit:hover {
+  opacity: 50%;
+}
+.question__btn-next {
+  width: 100%;
+  height: 56px;
+  text-align: center;
+  background-color: #a729f5;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-family: "Rubik";
+  font-weight: 500;
+  font-size: 18px;
+  cursor: pointer;
+  display: none;
+}
+.question__btn-next:hover {
+  opacity: 50%;
 }
 
 /*# sourceMappingURL=styles.css.map */

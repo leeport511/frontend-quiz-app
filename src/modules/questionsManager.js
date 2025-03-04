@@ -57,10 +57,13 @@ const renderQuestions = async (questions, index) => {
 	app.innerHTML = `
 		<section class="question">
 			<div class="question__container">
-				<p class="question__container-number">Question ${index + 1} of ${
+				<p class="question__container-progression">Question ${index + 1} of ${
 		questionIndex.length
 	}</p>
 				<p class="question__container-text"> ${question} </p>
+			</div>
+			<div class="question__progress-bar">
+				<div class="question__progress-bar--line"></div>
 			</div>
 			<div class="question__options">
 			</div>
@@ -74,12 +77,33 @@ const renderQuestions = async (questions, index) => {
 	);
 
 	options.forEach((opt) => {
-		let optionParagraph = document.createElement('P');
+		const optionContainer = document.createElement('DIV');
+		const optionLetter = document.createElement('SPAN');
+		const optionParagraph = document.createElement('P');
+
+		optionContainer.className = 'question__options--container';
+		optionContainer.tabIndex = '0';
+		optionLetter.className =
+			'question__options--container-letter';
+		optionParagraph.className =
+			'question_options--container-text';
+
+		optionLetter.textContent =
+			(options[0] === opt && 'A') ||
+			(options[1] === opt && 'B') ||
+			(options[2] === opt && 'C') ||
+			(options[3] === opt && 'D');
+
 		optionParagraph.textContent = opt;
 
-		optionSelector.appendChild(optionParagraph);
+		optionContainer.appendChild(optionLetter);
+		optionContainer.appendChild(optionParagraph);
+
+		optionSelector.appendChild(optionContainer);
 	});
 };
+
+//todo: agregar funcionalidad de next question y agregar funcionalidad en el submit answer si esta bien o mal la respuesta.
 
 const renderResult = () => {};
 
