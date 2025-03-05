@@ -5,6 +5,23 @@
 
 .question {
 	margin-top: 32px;
+	position: relative;
+
+	&__error {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-top: 12px;
+		color: $red;
+		font-size: 18px;
+		font-weight: 400;
+
+		img {
+			width: 32px;
+			height: 32px;
+			margin-right: 8px;
+		}
+	}
 
 	&__container {
 		margin-bottom: 24px;
@@ -40,6 +57,7 @@
 	&__options {
 		&--container {
 			@include btn-selector;
+			position: relative;
 			display: flex;
 			flex-direction: row;
 			align-items: center;
@@ -75,10 +93,24 @@
 				background-color: $red;
 				color: $white;
 			}
+
+			&-text {
+				width: 72%;
+			}
 		}
 
 		.green-border {
 			outline: 3px solid $green;
+		}
+
+		.correct-answer {
+			position: absolute;
+			right: 6px;
+		}
+
+		.wrong-answer {
+			position: absolute;
+			right: 6px;
 		}
 
 		.red-border {

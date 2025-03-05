@@ -44,58 +44,44 @@ const getQuestions = async (topic) => {
 };
 
 const renderQuestions = async (questions, index) => {
-	const questionIndex = await questions;
-	if (index >= questionIndex.length) {
-		renderFinalResult();
-		return;
-	}
+	const questionList = await questions;
+	if (index >= questionList.length) return renderFinalResult();
 
-	const { answer, options, question } = questionIndex[index];
-
+	const { answer, options, question } = questionList[index];
 	const app = document.getElementById('app');
 
 	app.innerHTML = `
-		<section class="question">
-			<div class="question__container">
-				<p class="question__container-progression">Question ${index + 1} of ${
-		questionIndex.length
+	    <section class="question">
+		  <div class="question__container">
+			<p class="question__container-progression">Question ${index + 1} of ${
+		questionList.length
 	}</p>
-				<p class="question__container-text"> ${question} </p>
-			</div>
-			<div class="question__progress-bar">
-				<div class="question__progress-bar--line"></div>
-			</div>
-			<div class="question__options">
-			</div>
-			<button class="question__btn-submit">Submit Answer</button>
-			<button class="question__btn-next">Next Question</button>
-		</section>
+			<p class="question__container-text">${question}</p>
+		  </div>
+		  <div class="question__progress-bar">
+			<div class="question__progress-bar--line"></div>
+		  </div>
+		  <div class="question__options"></div>
+		  <button class="question__btn-submit">Submit Answer</button>
+		  <button class="question__btn-next">Next Question</button>
+	    </section>
 	`;
 
 	const optionSelector = document.querySelector(
 		'.question__options'
 	);
-
-	let optionContainer;
-	let optionLetter;
-	let optionParagraph;
 	let selectedAnswer;
 
-	options.forEach((opt, index) => {
-		optionContainer = document.createElement('DIV');
-		optionLetter = document.createElement('SPAN');
-		optionParagraph = document.createElement('P');
-
+	options.forEach((opt, i) => {
+		const optionContainer = document.createElement('DIV');
 		optionContainer.className = 'question__options--container';
 		optionContainer.tabIndex = '0';
-		optionLetter.className =
-			'question__options--container-letter';
-		optionParagraph.className =
-			'question_options--container-text';
-
-		optionLetter.textContent = ['A', 'B', 'C', 'D'][index];
-
-		optionParagraph.textContent = opt;
+		optionContainer.innerHTML = `
+		  <span class="question__options--container-letter">${
+				['A', 'B', 'C', 'D'][i]
+			}</span>
+		  <p class="question__options--container-text">${opt}</p>
+	    `;
 
 		optionContainer.addEventListener('click', (e) => {
 			document
@@ -103,36 +89,43 @@ const renderQuestions = async (questions, index) => {
 				.forEach((el) => el.removeAttribute('isSelected'));
 
 			e.currentTarget.setAttribute('isSelected', 'true');
-
-			selectedAnswer = e.currentTarget.children[1].textContent;
+			selectedAnswer =
+				e.currentTarget.querySelector('p').textContent;
 		});
 
-		optionContainer.appendChild(optionLetter);
-		optionContainer.appendChild(optionParagraph);
 		optionSelector.appendChild(optionContainer);
 	});
 
-	const submitButton = document.querySelector(
-		'.question__btn-submit'
-	);
+	const correctAnswer = [
+		...document.querySelectorAll('.question__options--container'),
+	].find((el) => el.querySelector('p').textContent === answer);
 
-	submitButton.addEventListener('click', () =>
-		submitAnswer(answer, selectedAnswer)
-	);
+	document
+		.querySelector('.question__btn-submit')
+		.addEventListener('click', () =>
+			submitAnswer(answer, selectedAnswer, correctAnswer)
+		);
 };
 
 //todo: terminar estilos de correcto e incorrecto
 
 const nextQuestion = (nextIndex) => {};
 
-const submitAnswer = (answer, selectedAnswer) => {
+const submitAnswer = (answer, selectedAnswer, correctAnswer) => {
 	if (!selectedAnswer) {
-		alert('please Select an answer');
+		const errorContainer = document.createElement('div');
+		errorContainer.className = 'question__error';
+		errorContainer.innerHTML = `
+		<img src="/src/assets/images/icon-error.svg" alt="error-icon">
+		<p>Please select an answer</p>
+		`;
+
+		document
+			.querySelector('.question')
+			.appendChild(errorContainer);
+
 		return;
 	}
-
-	console.log(answer);
-	console.log(selectedAnswer);
 
 	const selectedOption = document.querySelector(
 		'.question__options--container[isSelected]'
@@ -143,19 +136,43 @@ const submitAnswer = (answer, selectedAnswer) => {
 	const submitButton = document.querySelector(
 		'.question__btn-submit'
 	);
-
 	const nextButton = document.querySelector('.question__btn-next');
 
-	if (answer === selectedAnswer) {
-		selectedOption.classList.add('green-border');
-		selectedLetterOption.classList.add('green-letter');
-		submitButton.style.display = 'none';
-	} else {
-		selectedOption.classList.add('red-border');
-		selectedLetterOption.classList.add('red-letter');
-		submitButton.style.display = 'none';
-	}
+	const createIcon = (src, className, alt) => {
+		const icon = document.createElement('IMG');
+		icon.src = src;
+		icon.className = className;
+		icon.alt = alt;
+		return icon;
+	};
 
+	const isCorrect = answer === selectedAnswer;
+	selectedOption.classList.add(
+		isCorrect ? 'green-border' : 'red-border'
+	);
+	selectedLetterOption.classList.add(
+		isCorrect ? 'green-letter' : 'red-letter'
+	);
+	selectedOption.appendChild(
+		createIcon(
+			`/src/assets/images/icon-${
+				isCorrect ? 'correct' : 'incorrect'
+			}.svg`,
+			isCorrect ? 'correct-answer' : 'wrong-answer',
+			isCorrect ? 'correct-icon' : 'wrong-icon'
+		)
+	);
+
+	if (!isCorrect)
+		correctAnswer.appendChild(
+			createIcon(
+				'/src/assets/images/icon-correct.svg',
+				'correct-answer',
+				'correct-icon'
+			)
+		);
+
+	submitButton.style.display = 'none';
 	nextButton.style.display = 'inline';
 };
 
