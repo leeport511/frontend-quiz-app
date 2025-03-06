@@ -18,6 +18,8 @@ const headerquestionTitleImg = document.querySelector(
 	'.header__quiz-title--img-cont img'
 );
 
+let questions;
+
 const startQuiz = (topic, icon, iconColor) => {
 	const subjectButton = document.getElementById(`${topic}`);
 
@@ -30,7 +32,7 @@ const startQuiz = (topic, icon, iconColor) => {
 		headerQuestionTitle.textContent = `${topic}`;
 		headerquestionTitleImg.src = icon;
 		headerquestionTitleImgCont.style.backgroundColor = iconColor;
-		const questions = getQuestions(subjectButton.id);
+		questions = getQuestions(subjectButton.id);
 		let currentIndex = 0;
 		renderQuestions(questions, currentIndex);
 	});
@@ -45,7 +47,7 @@ const getQuestions = async (topic) => {
 
 const renderQuestions = async (questions, index) => {
 	const questionList = await questions;
-	if (index >= questionList.length) return renderFinalResult();
+	if (index >= questionList.length) return getDataForResultPage();
 
 	const { answer, options, question } = questionList[index];
 	const app = document.getElementById('app');
@@ -105,26 +107,41 @@ const renderQuestions = async (questions, index) => {
 		.addEventListener('click', () =>
 			submitAnswer(answer, selectedAnswer, correctAnswer)
 		);
+
+	document
+		.querySelector('.question__btn-next')
+		.addEventListener('click', () => {
+			nextQuestion(questions, index);
+		});
 };
 
 //todo: terminar estilos de correcto e incorrecto
 
-const nextQuestion = (nextIndex) => {};
+const nextQuestion = (questions, index) => {
+	const nextIndex = index + 1;
+
+	renderQuestions(questions, nextIndex);
+};
 
 const submitAnswer = (answer, selectedAnswer, correctAnswer) => {
 	if (!selectedAnswer) {
-		const errorContainer = document.createElement('div');
-		errorContainer.className = 'question__error';
-		errorContainer.innerHTML = `
-		<img src="/src/assets/images/icon-error.svg" alt="error-icon">
-		<p>Please select an answer</p>
-		`;
+		if (!document.querySelector('.question__error')) {
+			const errorContainer = document.createElement('div');
+			errorContainer.className = 'question__error';
+			errorContainer.innerHTML = `
+			<img src="/src/assets/images/icon-error.svg" alt="error-icon">
+			<p>Please select an answer</p>
+			`;
 
-		document
-			.querySelector('.question')
-			.appendChild(errorContainer);
+			document
+				.querySelector('.question')
+				.appendChild(errorContainer);
 
-		return;
+			return;
+		}
+	} else if (document.querySelector('.question__error') !== null) {
+		document.querySelector('.question__error').style.display =
+			'none';
 	}
 
 	const selectedOption = document.querySelector(
@@ -176,5 +193,45 @@ const submitAnswer = (answer, selectedAnswer, correctAnswer) => {
 	nextButton.style.display = 'inline';
 };
 
-const renderFinalResult = () => {};
+const renderFinalResult = (icon, iconColor, topic) => {
+	console.log('render:', icon, iconColor, topic);
+
+	const app = document.getElementById('app');
+
+	app.innerHTML = `
+		<section class="results">
+			<div class="results__title">
+				<p>Quiz completed<br><b>You scored...</b></p>
+			</div>
+			<div class="results__box">
+				<div class="results__box--title">
+					<div class="results__box--title-imgbox">
+						<img src="${icon}" alt="${topic}">
+					</div>
+					<p>${topic}</p>
+				</div>
+				<div class="results__box--number">
+					<p class="results__box--number-big">10</p>
+					<p class="results__box--number-text">out of 10</p>
+				</div>
+			</div>
+			<button class="results__btn">Play Again</button>
+		</section>
+	`;
+
+	document.querySelector(
+		'.results__box--title-imgbox'
+	).style.backgroundColor = iconColor;
+};
+
+const getDataForResultPage = async () => {
+	const { quizzes } = await getData();
+
+	quizzes.forEach(({ icon, iconColor, title }) => {
+		renderFinalResult(icon, iconColor, title);
+	});
+}; // ! esto esta mal
+
 export { startQuiz, renderQuestions };
+
+//todo: fix result page and make logic to count the correct answer and show points
