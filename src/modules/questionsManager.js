@@ -20,6 +20,8 @@ const headerquestionTitleImg = document.querySelector(
 
 let questions;
 
+let correctAnswerCounter = 0;
+
 const startQuiz = (topic, icon, iconColor) => {
 	localStorage.clear();
 	const subjectButton = document.getElementById(`${topic}`);
@@ -56,7 +58,8 @@ const getQuestions = async (topic) => {
 
 const renderQuestions = async (questions, index) => {
 	const questionList = await questions;
-	if (index >= questionList.length) return renderFinalResult();
+	if (index >= questionList.length)
+		return renderFinalResult(correctAnswerCounter);
 
 	const { answer, options, question } = questionList[index];
 	const app = document.getElementById('app');
@@ -198,11 +201,13 @@ const submitAnswer = (answer, selectedAnswer, correctAnswer) => {
 			)
 		);
 
+	if (isCorrect) correctAnswerCounter += 1;
+
 	submitButton.style.display = 'none';
 	nextButton.style.display = 'inline';
 };
 
-const renderFinalResult = () => {
+const renderFinalResult = (correctAnswerCounter) => {
 	const subjectMetaDAta = JSON.parse(
 		localStorage.getItem('subjectData')
 	);
@@ -224,7 +229,7 @@ const renderFinalResult = () => {
 					<p>${topic}</p>
 				</div>
 				<div class="results__box--number">
-					<p class="results__box--number-big">10</p>
+					<p class="results__box--number-big">${correctAnswerCounter}</p>
 					<p class="results__box--number-text">out of 10</p>
 				</div>
 			</div>
@@ -239,4 +244,4 @@ const renderFinalResult = () => {
 
 export { startQuiz, renderQuestions };
 
-//todo: make logic to count the correct answer and show points
+//todo:

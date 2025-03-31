@@ -66,7 +66,7 @@
                     "answer": "<img>"
                 },
                 {
-                    "question": "What attribute is used to provide the path of an image in the <img> tag?",
+                    "question": "What attribute is used to provide the path of an image in the `img` tag?",
                     "options": [
                         "link",
                         "src",
@@ -86,7 +86,7 @@
                     "answer": "<ul>"
                 },
                 {
-                    "question": "What does the <br> tag do?",
+                    "question": "What does the `br` tag do?",
                     "options": [
                         "It breaks the text into two sections.",
                         "It creates a bold text.",
