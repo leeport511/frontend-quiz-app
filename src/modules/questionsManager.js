@@ -21,6 +21,7 @@ const headerquestionTitleImg = document.querySelector(
 let questions;
 
 const startQuiz = (topic, icon, iconColor) => {
+	localStorage.clear();
 	const subjectButton = document.getElementById(`${topic}`);
 
 	subjectButton.addEventListener('click', () => {
@@ -34,6 +35,14 @@ const startQuiz = (topic, icon, iconColor) => {
 		headerquestionTitleImgCont.style.backgroundColor = iconColor;
 		questions = getQuestions(subjectButton.id);
 		let currentIndex = 0;
+		localStorage.setItem(
+			'subjectData',
+			JSON.stringify({
+				topic,
+				icon,
+				iconColor,
+			})
+		);
 		renderQuestions(questions, currentIndex);
 	});
 };
@@ -47,7 +56,7 @@ const getQuestions = async (topic) => {
 
 const renderQuestions = async (questions, index) => {
 	const questionList = await questions;
-	if (index >= questionList.length) return getDataForResultPage();
+	if (index >= questionList.length) return renderFinalResult();
 
 	const { answer, options, question } = questionList[index];
 	const app = document.getElementById('app');
@@ -193,8 +202,12 @@ const submitAnswer = (answer, selectedAnswer, correctAnswer) => {
 	nextButton.style.display = 'inline';
 };
 
-const renderFinalResult = (icon, iconColor, topic) => {
-	console.log('render:', icon, iconColor, topic);
+const renderFinalResult = () => {
+	const subjectMetaDAta = JSON.parse(
+		localStorage.getItem('subjectData')
+	);
+
+	const { topic, icon, iconColor } = subjectMetaDAta;
 
 	const app = document.getElementById('app');
 
@@ -224,14 +237,6 @@ const renderFinalResult = (icon, iconColor, topic) => {
 	).style.backgroundColor = iconColor;
 };
 
-const getDataForResultPage = async () => {
-	const { quizzes } = await getData();
-
-	quizzes.forEach(({ icon, iconColor, title }) => {
-		renderFinalResult(icon, iconColor, title);
-	});
-}; // ! esto esta mal
-
 export { startQuiz, renderQuestions };
 
-//todo: fix result page and make logic to count the correct answer and show points
+//todo: make logic to count the correct answer and show points
