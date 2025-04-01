@@ -1,5 +1,5 @@
 const getData = async () => {
-	const resp = await fetch('/src/data/data.json');
+	const resp = await fetch('public/data/data.json');
 	const json = await resp.json();
 
 	return json;

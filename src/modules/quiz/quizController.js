@@ -2,6 +2,7 @@ import { getData } from '../data/getData';
 
 import { createElement, createImage } from '../utils/helpers';
 import { clearStorage, saveSubjectData } from '../utils/storage';
+import { renderQuestions } from './quizRenders';
 
 const allSubjectButtons = document.querySelectorAll(
 	'.quiz__subject-selector--btn'
