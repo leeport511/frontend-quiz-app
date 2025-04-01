@@ -2,7 +2,7 @@
     "quizzes": [
         {
             "title": "HTML",
-            "icon": "src/assets/images/icon-html.svg",
+            "icon": "public/assets/images/icon-html.svg",
             "iconColor": "#FFF1E9",
             "questions": [
                 {

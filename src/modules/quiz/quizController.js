@@ -128,4 +128,4 @@ export const submitAnswer = (
 	nextButton.style.display = 'inline';
 };
 
-//todo: organize better the code. make day night btn, responsive and finish
+//todo: make day night btn, responsive and finish
