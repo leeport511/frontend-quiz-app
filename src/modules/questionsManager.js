@@ -1,4 +1,6 @@
 import { getData } from './getData';
+import { renderHome } from './renderHome';
+import { subjectSelector } from './subjectSelector';
 
 const allSubjectButtons = document.querySelectorAll(
 	'.quiz__subject-selector--btn'
@@ -240,8 +242,17 @@ const renderFinalResult = (correctAnswerCounter) => {
 	document.querySelector(
 		'.results__box--title-imgbox'
 	).style.backgroundColor = iconColor;
+
+	const playAgainBtn = document.querySelector('.results__btn');
+
+	const setAgainHome = () => {
+		renderHome();
+		subjectSelector();
+	};
+
+	playAgainBtn.addEventListener('click', setAgainHome);
 };
 
 export { startQuiz, renderQuestions };
 
-//todo:
+//todo: make play again btn function. make day night btn, responsive and finish
