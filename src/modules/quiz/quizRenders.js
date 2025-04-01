@@ -1,6 +1,10 @@
 import { createElement } from '../utils/helpers';
 import { getSubjectData } from '../utils/storage';
-import { nextQuestion, submitAnswer } from './quizController';
+import {
+	correctAnswerCounter,
+	nextQuestion,
+	submitAnswer,
+} from './quizController';
 import { renderHome } from './renderHome';
 import { subjectSelector } from './subjectSelector';
 

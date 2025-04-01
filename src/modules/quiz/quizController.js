@@ -24,7 +24,7 @@ const headerquestionTitleImg = document.querySelector(
 
 let questions;
 
-let correctAnswerCounter = 0;
+export let correctAnswerCounter = 0;
 
 export const startQuiz = (topic, icon, iconColor) => {
 	clearStorage();
