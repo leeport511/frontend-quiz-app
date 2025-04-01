@@ -1,5 +1,5 @@
-import { getData } from './getData';
-import { startQuiz } from './questionsManager';
+import { getData } from '../data/getData';
+import { startQuiz } from './quizController';
 
 const subjectSelector = async () => {
 	const subjectsContainer = document.querySelector(
