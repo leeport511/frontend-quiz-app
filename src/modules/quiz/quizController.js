@@ -106,9 +106,7 @@ export const submitAnswer = (
 	);
 	selectedOption.appendChild(
 		createImage(
-			`/src/assets/images/icon-${
-				isCorrect ? 'correct' : 'incorrect'
-			}.svg`,
+			`/images/icon-${isCorrect ? 'correct' : 'incorrect'}.svg`,
 			isCorrect ? 'correct-answer' : 'wrong-answer',
 			isCorrect ? 'correct-icon' : 'wrong-icon'
 		)
@@ -117,7 +115,7 @@ export const submitAnswer = (
 	if (!isCorrect)
 		correctAnswer.appendChild(
 			createImage(
-				'/src/assets/images/icon-correct.svg',
+				'/images/icon-correct.svg',
 				'correct-answer',
 				'correct-icon'
 			)
