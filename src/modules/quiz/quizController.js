@@ -2,6 +2,7 @@ import { getData } from '../data/getData';
 
 import { createElement, createImage } from '../utils/helpers';
 import { clearStorage, saveSubjectData } from '../utils/storage';
+import { setProgressBarState } from './quizProgressBar';
 import { renderQuestions } from './quizRenders';
 import { incrementCorrectAnswerCounter } from './quizState';
 
@@ -54,10 +55,6 @@ export const getQuestions = async (topic) => {
 
 export const nextQuestion = async (questions, index) => {
 	const nextIndex = index + 1;
-
-	if ((await questions.length) > 10) {
-		correctAnswerCounter = 0;
-	}
 
 	renderQuestions(questions, nextIndex);
 };

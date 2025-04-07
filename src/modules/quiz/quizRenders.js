@@ -1,6 +1,7 @@
 import { createElement } from '../utils/helpers';
 import { getSubjectData } from '../utils/storage';
 import { nextQuestion, submitAnswer } from './quizController';
+import { setProgressBarState } from './quizProgressBar';
 import {
 	getCorrectAnswerCounter,
 	resetCorrectAnswerCounter,
@@ -16,22 +17,23 @@ export const renderQuestions = async (questions, index) => {
 	const app = document.getElementById('app');
 
 	app.innerHTML = `
-          <section class="question">
-              <div class="question__container">
-                  <p class="question__container-progression">Question ${
-						index + 1
-					} of ${questionList.length}</p>
-                  <p class="question__container-text">${question}</p>
-              </div>
-              <div class="question__progress-bar">
-                  <div class="question__progress-bar--line"></div>
-              </div>
-              <div class="question__options"></div>
-              <button class="question__btn-submit">Submit Answer</button>
-              <button class="question__btn-next">Next Question</button>
-          </section>
+	<section class="question">
+	<div class="question__container">
+	<p class="question__container-progression">Question ${index + 1} of ${
+		questionList.length
+	}</p>
+	<p class="question__container-text">${question}</p>
+	</div>
+	<div class="question__progress-bar">
+	<div class="question__progress-line"></div>
+	</div>
+	<div class="question__options"></div>
+	<button class="question__btn-submit">Submit Answer</button>
+	<button class="question__btn-next">Next Question</button>
+	</section>
       `;
 
+	setProgressBarState(index);
 	const optionSelector = document.querySelector(
 		'.question__options'
 	);

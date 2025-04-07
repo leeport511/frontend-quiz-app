@@ -176,17 +176,18 @@ body .main .header__btn--cont img {
 }
 .question__progress-bar {
   height: 16px;
-  width: 100%;
   background-color: #ffffff;
   padding: 4px;
+  width: 100%;
   border-radius: 9999px;
   margin-bottom: 40px;
 }
-.question__progress-bar--line {
+.question__progress-line {
   background-color: #a729f5;
-  width: 50%;
+  width: 0;
   height: 8px;
   border-radius: 9999px;
+  transition: width 0.3s ease-out;
 }
 .question__options--container {
   width: 100%;
