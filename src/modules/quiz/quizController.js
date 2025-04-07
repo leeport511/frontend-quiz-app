@@ -3,6 +3,7 @@ import { getData } from '../data/getData';
 import { createElement, createImage } from '../utils/helpers';
 import { clearStorage, saveSubjectData } from '../utils/storage';
 import { renderQuestions } from './quizRenders';
+import { incrementCorrectAnswerCounter } from './quizState';
 
 const allSubjectButtons = document.querySelectorAll(
 	'.quiz__subject-selector--btn'
@@ -23,8 +24,6 @@ const headerquestionTitleImg = document.querySelector(
 );
 
 let questions;
-
-export let correctAnswerCounter = 0;
 
 export const startQuiz = (topic, icon, iconColor) => {
 	clearStorage();
@@ -53,8 +52,12 @@ export const getQuestions = async (topic) => {
 	return quiz ? quiz.questions : [];
 };
 
-export const nextQuestion = (questions, index) => {
+export const nextQuestion = async (questions, index) => {
 	const nextIndex = index + 1;
+
+	if ((await questions.length) > 10) {
+		correctAnswerCounter = 0;
+	}
 
 	renderQuestions(questions, nextIndex);
 };
@@ -121,7 +124,7 @@ export const submitAnswer = (
 			)
 		);
 
-	if (isCorrect) correctAnswerCounter += 1;
+	if (isCorrect) incrementCorrectAnswerCounter();
 
 	submitButton.style.display = 'none';
 	nextButton.style.display = 'inline';

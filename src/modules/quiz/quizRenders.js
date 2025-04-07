@@ -1,17 +1,16 @@
 import { createElement } from '../utils/helpers';
 import { getSubjectData } from '../utils/storage';
+import { nextQuestion, submitAnswer } from './quizController';
 import {
-	correctAnswerCounter,
-	nextQuestion,
-	submitAnswer,
-} from './quizController';
+	getCorrectAnswerCounter,
+	resetCorrectAnswerCounter,
+} from './quizState';
 import { renderHome } from './renderHome';
 import { subjectSelector } from './subjectSelector';
 
 export const renderQuestions = async (questions, index) => {
 	const questionList = await questions;
-	if (index >= questionList.length)
-		return renderFinalResult(correctAnswerCounter);
+	if (index >= questionList.length) return renderFinalResult();
 
 	const { answer, options, question } = questionList[index];
 	const app = document.getElementById('app');
@@ -80,7 +79,9 @@ export const renderQuestions = async (questions, index) => {
 		});
 };
 
-export const renderFinalResult = (correctAnswerCounter) => {
+export const renderFinalResult = () => {
+	const correctAnswerCounter = getCorrectAnswerCounter();
+
 	const subjectMetaDAta = getSubjectData();
 
 	const { topic, icon, iconColor } = subjectMetaDAta;
@@ -115,6 +116,7 @@ export const renderFinalResult = (correctAnswerCounter) => {
 	const playAgainBtn = document.querySelector('.results__btn');
 
 	const setAgainHome = () => {
+		resetCorrectAnswerCounter();
 		renderHome();
 		subjectSelector();
 	};
