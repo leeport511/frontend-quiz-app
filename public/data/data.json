@@ -274,7 +274,7 @@
                     "options": [
                         "'This is a single-line comment",
                         "//This is a single-line comment",
-                        "<!--This is a single-line comment-->",
+                        "&lt;!--This is a single-line comment--&gt;",
                         "/* This is a single-line comment */"
                     ],
                     "answer": "//This is a single-line comment"
