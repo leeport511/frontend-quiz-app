@@ -8,6 +8,10 @@
 	margin-top: 32px;
 	color: $dark-navy;
 
+	&.quiz-dark-theme {
+		color: $white;
+	}
+
 	&__title {
 		margin-bottom: 40px;
 
@@ -24,6 +28,10 @@
 		p {
 			@include little-paragraph;
 			margin-top: 16px;
+
+			&.dark-paragraph {
+				@include little-paragraph-dark;
+			}
 		}
 	}
 
@@ -38,6 +46,11 @@
 			flex-direction: row-reverse;
 			align-items: center;
 			justify-content: flex-end;
+
+			&.dark-selector {
+				@include btn-selector-dark;
+				color: $white;
+			}
 		}
 
 		&--img {

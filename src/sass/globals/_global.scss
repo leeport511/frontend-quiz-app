@@ -18,12 +18,20 @@ body {
 	align-items: center;
 	background-color: $light-gray;
 
+	&.dark-theme {
+		background-color: $dark-navy;
+	}
+
 	.main {
 		@include left-right-padding;
 		width: 375px;
 		height: 100vh;
 		background-image: url('/src/assets/images/pattern-background-mobile-light.svg');
 		background-repeat: no-repeat;
+
+		&.main-dark {
+			background-image: url('/src/assets/images/pattern-background-mobile-dark.svg');
+		}
 
 		.header {
 			padding-top: 16px;
@@ -40,7 +48,6 @@ body {
 				align-items: center;
 
 				&--img-cont {
-					// background-color: #f6e7ff;
 					width: 40px;
 					height: 40px;
 					display: grid;
@@ -73,6 +80,7 @@ body {
 					border: none;
 					margin: 0 8px;
 					z-index: 0;
+					cursor: pointer;
 
 					.btn__white-dot {
 						margin: 0px 4px;
@@ -81,6 +89,11 @@ body {
 						height: 12px;
 						border-radius: 9999px;
 						z-index: 50;
+						transition: all 0.3s ease-in-out;
+
+						&.translated {
+							transform: translate(100%);
+						}
 					}
 				}
 
@@ -88,9 +101,6 @@ body {
 					width: 16px;
 				}
 			}
-		}
-
-		&__section {
 		}
 	}
 }
