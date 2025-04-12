@@ -16,15 +16,15 @@ export const handleDarkBtnAction = () => {
 		//* -- dark & light btn
 
 		if (sunImage.src.includes('icon-sun-dark.svg')) {
-			sunImage.src = '/public/images/icon-sun-light.svg'; // versión blanca para dark
+			sunImage.src = '/images/icon-sun-light.svg'; // versión blanca para dark
 		} else {
-			sunImage.src = '/public/images/icon-sun-dark.svg'; // versión negra para light
+			sunImage.src = '/images/icon-sun-dark.svg'; // versión negra para light
 		}
 
 		if (moonImage.src.includes('icon-moon-dark.svg')) {
-			moonImage.src = '/public/images/icon-moon-light.svg'; // versión blanca para dark
+			moonImage.src = '/images/icon-moon-light.svg'; // versión blanca para dark
 		} else {
-			moonImage.src = '/public/images/icon-moon-dark.svg'; // versión negra para light
+			moonImage.src = '/images/icon-moon-dark.svg'; // versión negra para light
 		}
 
 		//* -- globals
