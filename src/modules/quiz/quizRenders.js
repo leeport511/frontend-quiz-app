@@ -1,3 +1,4 @@
+import { quizPostRenderDarkTheme } from '../utils/darkButton';
 import { createElement } from '../utils/helpers';
 import { getSubjectData } from '../utils/storage';
 import { nextQuestion, submitAnswer } from './quizController';
@@ -79,6 +80,8 @@ export const renderQuestions = async (questions, index) => {
 		.addEventListener('click', () => {
 			nextQuestion(questions, index);
 		});
+
+	quizPostRenderDarkTheme();
 };
 
 export const renderFinalResult = () => {

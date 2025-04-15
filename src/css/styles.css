@@ -207,10 +207,16 @@ body .main .header__btn--cont img {
   font-weight: 300;
   margin-bottom: 12px;
 }
+.question__container-progression.quiz-dark-theme {
+  color: #abc1e1;
+}
 .question__container-text {
   line-height: 120%;
   font-weight: 500;
   font-size: 20px;
+}
+.question__container-text.quiz-dark-theme {
+  color: #ffffff;
 }
 .question__progress-bar {
   height: 16px;
@@ -246,6 +252,22 @@ body .main .header__btn--cont img {
   flex-direction: row;
   align-items: center;
 }
+.question__options--container.quiz-dark-theme {
+  width: 100%;
+  height: 64px;
+  background-color: #3b4d66;
+  padding: 12px;
+  gap: 16px;
+  margin-bottom: 12px;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 120%;
+  font-family: "Rubik";
+  cursor: pointer;
+  color: #ffffff;
+}
 .question__options--container:hover .question__options--container-letter {
   color: #a729f5;
   background-color: #f6e7ff;
@@ -266,6 +288,9 @@ body .main .header__btn--cont img {
   line-height: 30px;
   text-align: center;
   font-size: 18px;
+}
+.question__options--container-letter.quiz-dark-theme {
+  color: #626c7f;
 }
 .question__options--container .green-letter {
   background-color: #26d782;

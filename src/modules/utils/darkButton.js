@@ -33,11 +33,49 @@ export const handleDarkBtnAction = () => {
 		main.classList.toggle('main-dark');
 
 		//* -- home
-		quiz.classList.toggle('quiz-dark-theme');
-		paragraph.classList.toggle('dark-paragraph');
+		quiz?.classList.toggle('quiz-dark-theme');
+		paragraph?.classList.toggle('dark-paragraph');
 
-		btnsSelectors.forEach((btn) => {
+		btnsSelectors?.forEach((btn) => {
 			btn.classList.toggle('dark-selector');
 		});
+
+		quizPostRenderDarkTheme();
 	});
+};
+
+export const quizPostRenderDarkTheme = () => {
+	const isDark = body.classList.contains('dark-theme');
+
+	const questionProgression = document.querySelector(
+		'.question__container-progression'
+	);
+	const questionText = document.querySelector(
+		'.question__container-text'
+	);
+
+	const questionOptionsContainers = document.querySelectorAll(
+		'.question__options--container'
+	);
+
+	if (questionProgression)
+		questionProgression.classList.toggle(
+			'quiz-dark-theme',
+			isDark
+		);
+
+	if (questionText)
+		questionText.classList.toggle('quiz-dark-theme', isDark);
+
+	if (questionOptionsContainers) {
+		questionOptionsContainers.forEach((opt) => {
+			const optLetter = document.querySelectorAll(
+				'.question__options--container-letter'
+			);
+			opt.classList.toggle('quiz-dark-theme', isDark);
+			optLetter.forEach((letter) => {
+				letter.classList.toggle('quiz-dark-theme', isDark);
+			});
+		});
+	}
 };

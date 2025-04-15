@@ -30,12 +30,20 @@
 		&-progression {
 			@include little-paragraph;
 			margin-bottom: 12px;
+
+			&.quiz-dark-theme {
+				color: $light-blue;
+			}
 		}
 
 		&-text {
 			line-height: 120%;
 			font-weight: 500;
 			font-size: 20px;
+
+			&.quiz-dark-theme {
+				color: $white;
+			}
 		}
 	}
 
@@ -64,6 +72,11 @@
 			flex-direction: row;
 			align-items: center;
 
+			&.quiz-dark-theme {
+				@include btn-selector-dark;
+				color: $white;
+			}
+
 			&:hover &-letter {
 				color: $violet;
 				background-color: #f6e7ff;
@@ -84,6 +97,10 @@
 				line-height: 30px;
 				text-align: center;
 				font-size: 18px;
+
+				&.quiz-dark-theme {
+					color: $gray-navy;
+				}
 			}
 
 			.green-letter {
