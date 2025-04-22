@@ -127,4 +127,6 @@ export const renderFinalResult = () => {
 	};
 
 	playAgainBtn.addEventListener('click', setAgainHome);
+
+	quizPostRenderDarkTheme();
 };

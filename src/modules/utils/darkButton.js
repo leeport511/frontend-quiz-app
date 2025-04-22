@@ -9,6 +9,9 @@ export const handleDarkBtnAction = () => {
 	darkButton.addEventListener('click', () => {
 		const quiz = document.querySelector('.quiz');
 		const paragraph = document.querySelector('.quiz__title p');
+		const quizTitle = document.querySelector(
+			'.header__quiz-title--text'
+		);
 		const btnsSelectors = document.querySelectorAll(
 			'.quiz__subject-selector--btn'
 		);
@@ -31,6 +34,7 @@ export const handleDarkBtnAction = () => {
 		whiteBtnDot.classList.toggle('translated');
 		body.classList.toggle('dark-theme');
 		main.classList.toggle('main-dark');
+		quizTitle.classList.toggle('dark-theme');
 
 		//* -- home
 		quiz?.classList.toggle('quiz-dark-theme');
@@ -58,6 +62,20 @@ export const quizPostRenderDarkTheme = () => {
 		'.question__options--container'
 	);
 
+	const resultsQuizTitle =
+		document.querySelector('.results__title');
+
+	const resultsQuizBox = document.querySelector('.results__box');
+
+	const resultsQuizBoxBottomText = document.querySelector(
+		'.results__box--number-text'
+	);
+
+	const resultsQuizBoxBottomNumber = document.querySelector(
+		'.results__box--number-big'
+	);
+
+	// Question render
 	if (questionProgression)
 		questionProgression.classList.toggle(
 			'quiz-dark-theme',
@@ -78,4 +96,30 @@ export const quizPostRenderDarkTheme = () => {
 			});
 		});
 	}
+
+	// Results Render
+
+	if (resultsQuizTitle)
+		resultsQuizTitle.classList.toggle(
+			'results-dark-theme',
+			isDark
+		);
+
+	if (resultsQuizBox)
+		resultsQuizBox.classList.toggle(
+			'results-dark-theme-box',
+			isDark
+		);
+
+	if (resultsQuizBoxBottomText)
+		resultsQuizBoxBottomText.classList.toggle(
+			'results-dark-theme',
+			isDark
+		);
+
+	if (resultsQuizBoxBottomNumber)
+		resultsQuizBoxBottomNumber.classList.toggle(
+			'results-dark-theme',
+			isDark
+		);
 };
