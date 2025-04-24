@@ -17,11 +17,11 @@
 
 		h1 {
 			font-size: 40px;
-			font-weight: 300;
+			font-weight: 100;
 			line-height: 120%;
 
 			b {
-				font-weight: 600;
+				font-weight: 500;
 			}
 		}
 
@@ -55,6 +55,94 @@
 
 		&--img {
 			@include img-border;
+		}
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.quiz {
+		margin-top: 32px;
+		color: $dark-navy;
+
+		&.quiz-dark-theme {
+			color: $white;
+		}
+
+		&__title {
+			margin-bottom: 40px;
+
+			h1 {
+				font-size: 64px;
+				font-weight: 100;
+				line-height: 120%;
+
+				b {
+					font-weight: 500;
+				}
+			}
+
+			p {
+				@include little-paragraph-tablet;
+				margin-top: 16px;
+
+				&.dark-paragraph {
+					@include little-paragraph-dark-tablet;
+				}
+			}
+		}
+
+		&__subject-selector {
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+
+			&--btn {
+				@include btn-selector-tablet;
+				display: flex;
+				flex-direction: row-reverse;
+				align-items: center;
+				justify-content: flex-end;
+
+				&.dark-selector {
+					@include btn-selector-dark-tablet;
+					color: $white;
+				}
+			}
+
+			&--img {
+				@include img-border-tablet;
+			}
+		}
+	}
+}
+
+@media screen and (min-width: 1280px) {
+	.quiz {
+		margin-top: 32px;
+		color: $dark-navy;
+		display: flex;
+		flex-direction: row;
+
+		&__subject-selector {
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: flex-end;
+
+			&--btn {
+				@include btn-selector-desktop;
+				width: 85%;
+				display: flex;
+				flex-direction: row-reverse;
+				align-items: center;
+				justify-content: flex-end;
+
+				&.dark-selector {
+					@include btn-selector-dark-desktop;
+					color: $white;
+					width: 85%;
+				}
+			}
 		}
 	}
 }

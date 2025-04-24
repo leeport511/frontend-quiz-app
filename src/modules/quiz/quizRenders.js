@@ -1,4 +1,7 @@
-import { quizPostRenderDarkTheme } from '../utils/darkButton';
+import {
+	homePostRenderDarkTheme,
+	quizPostRenderDarkTheme,
+} from '../utils/darkButton';
 import { createElement } from '../utils/helpers';
 import { getSubjectData } from '../utils/storage';
 import { nextQuestion, submitAnswer } from './quizController';
@@ -24,13 +27,15 @@ export const renderQuestions = async (questions, index) => {
 		questionList.length
 	}</p>
 	<p class="question__container-text">${question}</p>
-	</div>
 	<div class="question__progress-bar">
 	<div class="question__progress-line"></div>
 	</div>
+	</div>
+	<div class="div">
 	<div class="question__options"></div>
 	<button class="question__btn-submit">Submit Answer</button>
 	<button class="question__btn-next">Next Question</button>
+	</div>
 	</section>
       `;
 
@@ -98,19 +103,21 @@ export const renderFinalResult = () => {
 			<div class="results__title">
 				<p>Quiz completed<br><b>You scored...</b></p>
 			</div>
-			<div class="results__box">
-				<div class="results__box--title">
-					<div class="results__box--title-imgbox">
-						<img src="${icon}" alt="${topic}">
+			<div>
+				<div class="results__box">
+					<div class="results__box--title">
+						<div class="results__box--title-imgbox">
+							<img src="${icon}" alt="${topic}">
+						</div>
+						<p>${topic}</p>
 					</div>
-					<p>${topic}</p>
+					<div class="results__box--number">
+						<p class="results__box--number-big">${correctAnswerCounter}</p>
+						<p class="results__box--number-text">out of 10</p>
+					</div>
 				</div>
-				<div class="results__box--number">
-					<p class="results__box--number-big">${correctAnswerCounter}</p>
-					<p class="results__box--number-text">out of 10</p>
-				</div>
+				<button class="results__btn">Play Again</button>
 			</div>
-			<button class="results__btn">Play Again</button>
 		</section>
 	`;
 

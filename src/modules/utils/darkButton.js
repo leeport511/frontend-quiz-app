@@ -4,18 +4,10 @@ const sunImage = document.getElementById('sun-img');
 const moonImage = document.getElementById('moon-img');
 const body = document.querySelector('body');
 const main = document.querySelector('.main');
+const quizTitle = document.querySelector('.header__quiz-title--text');
 
 export const handleDarkBtnAction = () => {
 	darkButton.addEventListener('click', () => {
-		const quiz = document.querySelector('.quiz');
-		const paragraph = document.querySelector('.quiz__title p');
-		const quizTitle = document.querySelector(
-			'.header__quiz-title--text'
-		);
-		const btnsSelectors = document.querySelectorAll(
-			'.quiz__subject-selector--btn'
-		);
-
 		//* -- dark & light btn
 
 		if (sunImage.src.includes('icon-sun-dark.svg')) {
@@ -31,21 +23,34 @@ export const handleDarkBtnAction = () => {
 		}
 
 		//* -- globals
-		whiteBtnDot.classList.toggle('translated');
-		body.classList.toggle('dark-theme');
-		main.classList.toggle('main-dark');
-		quizTitle.classList.toggle('dark-theme');
+		whiteBtnDot?.classList.toggle('translated');
+		body?.classList.toggle('dark-theme');
+		main?.classList.toggle('main-dark');
+		quizTitle?.classList.toggle('dark-theme');
 
-		//* -- home
-		quiz?.classList.toggle('quiz-dark-theme');
-		paragraph?.classList.toggle('dark-paragraph');
-
-		btnsSelectors?.forEach((btn) => {
-			btn.classList.toggle('dark-selector');
-		});
-
+		homePostRenderDarkTheme();
 		quizPostRenderDarkTheme();
 	});
+};
+
+export const homePostRenderDarkTheme = () => {
+	const isDark = body.classList.contains('dark-theme');
+
+	const quiz = document.querySelector('.quiz');
+	const paragraph = document.querySelector('.quiz__title p');
+	const btnsSelectors = document.querySelectorAll(
+		'.quiz__subject-selector--btn'
+	);
+
+	//* -- home
+	if (quiz) quiz.classList.toggle('quiz-dark-theme', isDark);
+	if (paragraph)
+		paragraph.classList.toggle('dark-paragraph', isDark);
+
+	if (btnsSelectors)
+		btnsSelectors.forEach((btn) => {
+			btn.classList.toggle('dark-selector', isDark);
+		});
 };
 
 export const quizPostRenderDarkTheme = () => {
